@@ -1,5 +1,6 @@
 package com.alekseysamoylov.saver.xmlModels;
 
+import com.alekseysamoylov.saver.models.Operation;
 import com.alekseysamoylov.saver.models.Order;
 
 import java.util.ArrayList;
@@ -21,5 +22,25 @@ public class Orders {
 
     public void setOrderList(List<Order> orderList) {
         this.orderList = orderList;
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder ret = new StringBuilder();
+
+            for (Order order : orderList) {
+                ret.append(order.getClientsCar().getClient().getFirstName() +
+                        " " + order.getClientsCar().getClient().getSecondName() +
+                        " \n" + order.getManager().getName() + " \n" + order.getClientsCar().getCar().getMark() +
+                        " " + order.getClientsCar().getCar().getModel() +
+                        " " + order.getClientsCar().getCarNumber() +
+                        " \n" + order.getOrderName() + ":\n");
+                for (Operation operation : order.getOperationList()) {
+                    ret.append(operation.getWork().getWorkName() + " " + operation.getWork().getPrice() + "\n");
+                }
+                ret.append("******************************************************* \n\n");
+            }
+
+        return ret.toString();
     }
 }

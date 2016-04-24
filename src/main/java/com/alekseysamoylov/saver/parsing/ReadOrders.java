@@ -1,31 +1,26 @@
-package com.alekseysamoylov.saver;
+package com.alekseysamoylov.saver.parsing;
 
 import com.alekseysamoylov.saver.models.*;
 import com.alekseysamoylov.saver.storages.JDBConnection;
 import com.alekseysamoylov.saver.storages.StatementsProperty;
 import com.alekseysamoylov.saver.xmlModels.Orders;
-import org.junit.Test;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 /**
  * Created by alekseysamoylov on 4/24/16.
- *
  */
-public class TestOrders {
-
-    @Test
-    public void ordersTest(){
+public class ReadOrders {
+    public Orders getOrders() {
         Orders orders = new Orders();
-        try(Connection connection = new JDBConnection().getConnection()){
+        try (Connection connection = new JDBConnection().getConnection()) {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(
                     new StatementsProperty().getProperties().getProperty("getOrders"));
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Order order = new Order();
                 order.setOrderId(resultSet.getInt(1));
                 order.setOrderDate(resultSet.getDate(2));
@@ -71,7 +66,7 @@ public class TestOrders {
                 preparedStatement.setInt(1, order.getOrderId());
                 ResultSet operationsResultSet = preparedStatement.executeQuery();
                 List<Operation> operationList = new ArrayList<>();
-                while (operationsResultSet.next()){
+                while (operationsResultSet.next()) {
                     Operation operation = new Operation();
                     operation.setOperationId(operationsResultSet.getInt(1));
 
@@ -119,5 +114,6 @@ public class TestOrders {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return orders;
     }
 }
