@@ -1,0 +1,19 @@
+<clients>
+    <client>
+        <clientId></clientId>
+        <firstName></firstName>
+        <secondName></secondName>
+        <phone></phone>
+        <other></other>
+        <clientCars>
+            <clientCar>
+                <clientCarId></clientCarId>
+                <carId></carId>
+                <mark></mark>
+                <model></model>
+                <carNumber></carNumber>
+                <other></other>
+            </clientCar>
+        </clientCars>
+    </client>
+</clients>
