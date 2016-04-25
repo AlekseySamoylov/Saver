@@ -1,4 +1,4 @@
-package com.alekseysamoylov.saver.xmlModels;
+package com.alekseysamoylov.saver.models;
 
 import com.alekseysamoylov.saver.models.Operation;
 import com.alekseysamoylov.saver.models.Order;

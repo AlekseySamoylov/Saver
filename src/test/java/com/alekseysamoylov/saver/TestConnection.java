@@ -37,7 +37,7 @@ public class TestConnection {
                 XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newInstance();
                 XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(stringWriter);
 
-                xmlStreamWriter.writeStartDocument("UTF-8");
+                xmlStreamWriter.writeStartDocument("UTF-8", "1.0");
                 xmlStreamWriter.writeStartElement("slesars");
                 while (resultSet.next()){
                     xmlStreamWriter.writeStartElement("slesar");

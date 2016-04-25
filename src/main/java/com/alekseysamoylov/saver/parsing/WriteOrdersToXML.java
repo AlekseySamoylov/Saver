@@ -2,7 +2,7 @@ package com.alekseysamoylov.saver.parsing;
 
 import com.alekseysamoylov.saver.models.Operation;
 import com.alekseysamoylov.saver.models.Order;
-import com.alekseysamoylov.saver.xmlModels.Orders;
+import com.alekseysamoylov.saver.models.Orders;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
@@ -30,9 +30,9 @@ public class WriteOrdersToXML {
         XMLOutputFactory xmlOutputFactory = XMLOutputFactory.newInstance();
         XMLStreamWriter xmlStreamWriter = xmlOutputFactory.createXMLStreamWriter(stringWriter);
 
-        xmlStreamWriter.writeStartDocument("UTF-8");
+        xmlStreamWriter.writeStartDocument("UTF-8", "1.0");
         //<orders>
-        xmlStreamWriter.writeStartElement(orders.getClass().getName().substring(36));
+        xmlStreamWriter.writeStartElement(orders.getClass().getName().substring(33));
 
         for (Order order : orders.getOrderList()) {
             //<Order>
@@ -57,11 +57,13 @@ public class WriteOrdersToXML {
         String fin = stringWriter.getBuffer().toString();
         FileWriter fileWriter = new FileWriter("Orders.xml");
         fileWriter.write(fin);
+        fileWriter.close();
 
 
     }
 
-    public void recursiveXmlCreating(XMLStreamWriter xmlStreamWriter, Object object) throws XMLStreamException, IntrospectionException, InvocationTargetException, IllegalAccessException {
+    public void recursiveXmlCreating(XMLStreamWriter xmlStreamWriter, Object object)
+            throws XMLStreamException, IntrospectionException, InvocationTargetException, IllegalAccessException {
         for (Field field : object.getClass().getDeclaredFields()) {
             //<id><...
             xmlStreamWriter.writeStartElement(field.getName());

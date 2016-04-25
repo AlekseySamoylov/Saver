@@ -3,7 +3,7 @@ package com.alekseysamoylov.saver.parsing;
 import com.alekseysamoylov.saver.models.*;
 import com.alekseysamoylov.saver.storages.JDBConnection;
 import com.alekseysamoylov.saver.storages.StatementsProperty;
-import com.alekseysamoylov.saver.xmlModels.Orders;
+import com.alekseysamoylov.saver.models.Orders;
 
 import java.sql.*;
 import java.util.ArrayList;
