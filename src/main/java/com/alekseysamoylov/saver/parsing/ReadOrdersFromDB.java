@@ -12,8 +12,8 @@ import java.util.List;
 /**
  * Created by alekseysamoylov on 4/24/16.
  */
-public class ReadOrders {
-    public Orders getOrders() {
+public class ReadOrdersFromDB {
+    public synchronized Orders getOrders() {
         Orders orders = new Orders();
         try (Connection connection = new JDBConnection().getConnection()) {
             Statement statement = connection.createStatement();
@@ -110,7 +110,6 @@ public class ReadOrders {
                 orders.addOrder(order);
             }
 
-            System.out.println(orders);
         } catch (SQLException e) {
             e.printStackTrace();
         }
